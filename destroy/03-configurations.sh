@@ -32,26 +32,26 @@ Do you have those tools installed?
 # Crossplane #
 ##############
 
-if [[ "$HYPERSCALER" == "google" ]]; then
+# if [[ "$HYPERSCALER" == "google" ]]; then
 
-	gcloud projects delete $PROJECT_ID --quiet
+# 	gcloud projects delete $PROJECT_ID --quiet
 
-else
+# else
 
-	kubectl --namespace a-team delete \
-		--filename examples/$HYPERSCALER-sql-v6.yaml
+# 	kubectl --namespace a-team delete \
+# 		--filename examples/$HYPERSCALER-sql-v6.yaml
 
-	COUNTER=$(kubectl get managed --no-headers | grep -v database \
-		| wc -l)
+# 	COUNTER=$(kubectl get managed --no-headers | grep -v database \
+# 		| wc -l)
 
-	while [ $COUNTER -ne 0 ]; do
-		echo "$COUNTER resources still exist. Waiting for them to be deleted..."
-		sleep 30
-		COUNTER=$(kubectl get managed --no-headers \
-			| grep -v database | wc -l)
-	done
+# 	while [ $COUNTER -ne 0 ]; do
+# 		echo "$COUNTER resources still exist. Waiting for them to be deleted..."
+# 		sleep 30
+# 		COUNTER=$(kubectl get managed --no-headers \
+# 			| grep -v database | wc -l)
+# 	done
 
-fi
+# fi
 
 #########################
 # Control Plane Cluster #
